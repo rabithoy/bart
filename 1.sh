@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVER="http://54.36.60.95:7777"
+SERVER="http://54.36.60.95:6666"
 UPDATE_FILE="/home/cloudshell-user/updateproxy.txt"
 COUNT=17
 

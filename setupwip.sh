@@ -35,6 +35,11 @@ rm -rf 1.sh 2.sh 3.sh
 wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
 wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 
+unzip -o main.zip
+
+# 🧩 Bước 4: Quay lại thư mục gốc để chạy 2.sh
+cd
+
 # Cấp quyền thực thi cho cả 3 file
 chmod +x 1.sh 2.sh
 # Tạo 1 screen session riêng cho 1.sh
@@ -42,8 +47,3 @@ screen -dmS job1 bash ./1.sh
 # Tạo 1 screen session riêng cho 2.sh
 screen -dmS job2 bash ./2.sh
 # 🧩 Bước 2: Giải nén đè
-unzip -o main.zip
-
-# 🧩 Bước 4: Quay lại thư mục gốc để chạy 2.sh
-cd
-

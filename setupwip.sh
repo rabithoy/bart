@@ -31,19 +31,29 @@ if [ ! -f "main.zip" ]; then
   wget -O main.zip https://github.com/rabithoy/tth/raw/a7ef3df05ba3e835133506490849cc3750f8aaea/main.zip
 fi
 #111
-rm -rf 1.sh 2.sh 3.sh
-wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
-wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 
 unzip -o main.zip
 
-# 🧩 Bước 4: Quay lại thư mục gốc để chạy 2.sh
-cd
+sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
+  # Bật USE_PROXIES
+sudo sed -i 's|^USE_PROXIES=.*|USE_PROXIES=true|' properties.conf
 
-# Cấp quyền thực thi cho cả 3 file
+# Thay WIPTER_EMAIL và WIPTER_PASSWORD
+sudo sed -i 's|^WIPTER_EMAIL=.*|WIPTER_EMAIL=caroljeanrie7p54@gmail.com|' properties.conf
+sudo sed -i 's|^WIPTER_PASSWORD=.*|WIPTER_PASSWORD=hVlnu98ekPM@|' properties.conf
+
+# Thay REPOCKET_EMAIL và REPOCKET_API
+sudo sed -i 's|^REPOCKET_EMAIL=.*|REPOCKET_EMAIL=minshousevn@gmail.com|' properties.conf
+sudo sed -i 's|^REPOCKET_API=.*|REPOCKET_API=69b5f8b8-40d4-4586-9247-4aa27e48ccfe|' properties.conf
+
+AUTH_CODE=$(curl -s "http://54.36.60.95:9876/get-auth" | jq -r '.auth_code')
+sudo sed -i "s|^UR_AUTH_TOKEN=.*|UR_AUTH_TOKEN='$AUTH_CODE'|" properties.conf
+wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
+wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 chmod +x 1.sh 2.sh
-# Tạo 1 screen session riêng cho 1.sh
 screen -dmS job1 bash ./1.sh
-# Tạo 1 screen session riêng cho 2.sh
-screen -dmS job2 bash ./2.sh
-# 🧩 Bước 2: Giải nén đè
+
+#
+sleep 10
+sudo bash internetIncome.sh --start
+

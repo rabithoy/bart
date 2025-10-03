@@ -34,7 +34,6 @@ if [ ! -f "main.zip" ]; then
   wget -O main.zip https://github.com/rabithoy/tth/raw/a7ef3df05ba3e835133506490849cc3750f8aaea/main.zip
 fi
     rm -rf 1.sh 2.sh 3.sh
-    rm -rf *
     wget https://raw.githubusercontent.com/rabithoy/bart/main/1.sh
     wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/2.sh
     wget https://raw.githubusercontent.com/rabithoy/bart/main/3.sh

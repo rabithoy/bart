@@ -37,7 +37,6 @@ while true; do
   # Luôn giữ token cố định
 
   sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
-  sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
 
   # Kiểm tra container
   CONTAINER_RUNNING=$(sudo docker ps -q)

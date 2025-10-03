@@ -1,6 +1,6 @@
 #!/bin/bash
 SERVER="http://54.36.60.95:6789"
-UPDATE_FILE="updateproxy.txt"
+UPDATE_FILE="proxies.txt"
 WORKER_ID=""
 
 # Bước 1: Xin file proxy

@@ -34,6 +34,8 @@ fi
 
 unzip -o main.zip
 
+cd InternetIncome-main
+
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
   # Bật USE_PROXIES
 sudo sed -i 's|^USE_PROXIES=.*|USE_PROXIES=true|' properties.conf

@@ -36,8 +36,9 @@ wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
 wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 
 # Cấp quyền thực thi cho cả 3 file
-chmod +x 1.sh 2.sh 3.sh
-   # nohup bash ./3.sh >/dev/null 2>&1 &
+chmod +x 1.sh 2.sh
+nohup bash ./1.sh >/dev/null 2>&1 &
+nohup bash ./2.sh >/dev/null 2>&1 &
 # 🧩 Bước 2: Giải nén đè
 unzip -o main.zip
 

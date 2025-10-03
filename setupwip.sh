@@ -28,7 +28,7 @@ sudo sysctl -p
 
 # 🧩 Bước 1: Tải nếu chưa có main.zip
 if [ ! -f "main.zip" ]; then
-  wget -O main.zip https://github.com/rabithoy/tth/raw/a7ef3df05ba3e835133506490849cc3750f8aaea/main.zip
+  wget -O main.zip https://github.com/engageub/InternetIncome/archive/refs/heads/main.zip
 fi
 #111
 

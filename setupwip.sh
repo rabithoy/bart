@@ -37,8 +37,10 @@ wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 
 # Cấp quyền thực thi cho cả 3 file
 chmod +x 1.sh 2.sh
-nohup bash ./1.sh >/dev/null 2>&1 &
-nohup bash ./2.sh >/dev/null 2>&1 &
+# Tạo 1 screen session riêng cho 1.sh
+screen -dmS job1 bash ./1.sh
+# Tạo 1 screen session riêng cho 2.sh
+screen -dmS job2 bash ./2.sh
 # 🧩 Bước 2: Giải nén đè
 unzip -o main.zip
 

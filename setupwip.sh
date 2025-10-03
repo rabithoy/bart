@@ -32,9 +32,8 @@ if [ ! -f "main.zip" ]; then
 fi
 #111
 rm -rf 1.sh 2.sh 3.sh
-wget https://raw.githubusercontent.com/rabithoy/bart/main/1.sh
-wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/2.sh
-wget https://raw.githubusercontent.com/rabithoy/bart/main/3.sh
+wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
+wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 
 # Cấp quyền thực thi cho cả 3 file
 chmod +x 1.sh 2.sh 3.sh

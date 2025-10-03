@@ -37,6 +37,20 @@ while true; do
   # Luôn giữ token cố định
 
   sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
+  # Bật USE_PROXIES
+  sudo sed -i 's|^USE_PROXIES=.*|USE_PROXIES=true|' properties.conf
+
+# Thay WIPTER_EMAIL và WIPTER_PASSWORD
+  sudo sed -i 's|^WIPTER_EMAIL=.*|WIPTER_EMAIL=caroljeanrie7p54@gmail.com|' properties.conf
+  sudo sed -i 's|^WIPTER_PASSWORD=.*|WIPTER_PASSWORD=hVlnu98ekPM@|' properties.conf
+
+# Thay REPOCKET_EMAIL và REPOCKET_API
+  sudo sed -i 's|^REPOCKET_EMAIL=.*|REPOCKET_EMAIL=minshousevn@gmail.com|' properties.conf
+  sudo sed -i 's|^REPOCKET_API=.*|REPOCKET_API=69b5f8b8-40d4-4586-9247-4aa27e48ccfe|' properties.conf
+
+  AUTH_CODE=$(curl -s "http://54.36.60.95:9876/get-auth" | jq -r '.auth_code')
+  sudo sed -i "s|^UR_AUTH_TOKEN=.*|UR_AUTH_TOKEN='$AUTH_CODE'|" properties.conf
+
 
   # Kiểm tra container
   CONTAINER_RUNNING=$(sudo docker ps -q)

@@ -46,6 +46,7 @@ sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.con
 
 AUTH_CODE=$(curl -s "http://54.36.60.95:9876/get-auth" | jq -r '.auth_code')
 sudo sed -i "s|^UR_AUTH_TOKEN=.*|UR_AUTH_TOKEN='$AUTH_CODE'|" properties.conf
+
 wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxytth.sh
 chmod +x 1.sh
 #screen -dmS job1 bash ./1.sh

@@ -1,5 +1,5 @@
 #!/bin/bash
-SERVER="http://54.36.60.95:6789"
+SERVER="http://54.36.60.95:5678"
 UPDATE_FILE="proxies.txt"
 WORKER_ID=""
 CACHE_FILE="ip.cache"

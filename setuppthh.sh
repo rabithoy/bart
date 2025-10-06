@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+sudo docker rmi -f $(sudo docker images -q)
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
 # Cài đặt gói cần thiết

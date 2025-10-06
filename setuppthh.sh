@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
-sudo docker image prune -a -f
+sudo docker rm -f $(sudo docker ps -aq) || true
+sudo docker rmi -f $(sudo docker images -q) || true
+
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
 # Cài đặt gói cần thiết

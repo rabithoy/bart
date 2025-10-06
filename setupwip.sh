@@ -3,9 +3,11 @@ set -e
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
 # Cài đặt 
-sudo docker rm -f $(sudo docker ps -aq) || true
-# Cài đặt 
 sudo docker rmi -f $(sudo docker images -q) || true
+# Cài đặt 
+sudo docker rm -f $(sudo docker ps -aq) || true
+
+
 
 # Cài đặt gói cần thiết
 echo "📦 Installing dependencies..."

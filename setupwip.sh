@@ -66,6 +66,7 @@ screen -dmS job1 bash ./1.sh
 #
 sleep 10
 sudo bash internetIncome.sh --delete || true
+sleep 10
 #
 sudo bash internetIncome.sh --start
 

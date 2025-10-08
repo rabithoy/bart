@@ -1,20 +1,35 @@
 #!/bin/bash
 set -e
-sudo docker rm -f $(sudo docker ps -aq) || true
-sudo docker rmi -f $(sudo docker images -q) || true
+
+# Dọn dẹp container và image cũ
+sudo docker rm -f $(sudo docker ps -aq) 2>/dev/null || true
+sudo docker rmi -f $(sudo docker images -q) 2>/dev/null || true
 
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
 
-# Tự động bỏ qua prompt
-export DEBIAN_FRONTEND=noninteractive
+echo "📦 Checking dependencies..."
 
-# Cài đặt gói cần thiết
-echo "📦 Installing dependencies..."
-sudo apt update -y && \
-sudo apt install -y -o Dpkg::Options::="--force-confdef" \
-                    -o Dpkg::Options::="--force-confold" \
-                    docker.io unzip curl jq bc
+# Hàm kiểm tra gói và chỉ cài khi chưa có
+install_if_missing() {
+  local pkg=$1
+  if dpkg -s "$pkg" &>/dev/null; then
+    echo "✅ $pkg đã được cài đặt, bỏ qua."
+  else
+    echo "⬇️  Cài đặt $pkg..."
+    sudo apt install -y "$pkg"
+  fi
+}
+
+# Update danh sách package nếu cần
+sudo apt update -y
+
+# Kiểm tra và cài nếu chưa có
+install_if_missing docker.io
+install_if_missing unzip
+install_if_missing curl
+install_if_missing jq
+install_if_missing bc
 
 # Thiết lập swap 10GB
 SWAP_FILE="/swapfile"

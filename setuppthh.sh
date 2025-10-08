@@ -5,9 +5,16 @@ sudo docker rmi -f $(sudo docker images -q) || true
 
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
+
+# Tự động bỏ qua prompt
+export DEBIAN_FRONTEND=noninteractive
+
 # Cài đặt gói cần thiết
 echo "📦 Installing dependencies..."
-sudo apt update -y && sudo apt install -y docker.io unzip curl jq bc
+sudo apt update -y && \
+sudo apt install -y -o Dpkg::Options::="--force-confdef" \
+                    -o Dpkg::Options::="--force-confold" \
+                    docker.io unzip curl jq bc
 
 # Thiết lập swap 10GB
 SWAP_FILE="/swapfile"

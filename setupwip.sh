@@ -1,18 +1,18 @@
 #!/bin/bash
 set -e
 
-# Khắc phục lỗi dpkg bị ngắt
+# Sửa lỗi dpkg nếu có
 sudo dpkg --configure -a || true
 
-# Dọn dẹp container và image cũ
-containers=$(sudo docker ps -aq)
+# Dọn container & image cũ
+containers=$(sudo docker ps -aq 2>/dev/null || true)
 if [ -n "$containers" ]; then
   sudo docker rm -f $containers
 else
   echo "⚙️  Không có container nào để xóa."
 fi
 
-images=$(sudo docker images -q)
+images=$(sudo docker images -q 2>/dev/null || true)
 if [ -n "$images" ]; then
   sudo docker rmi -f $images
 else
@@ -22,25 +22,42 @@ fi
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
 
-echo "📦 Checking dependencies..."
+echo "📦 Kiểm tra các gói phụ thuộc..."
 
+# Hàm kiểm tra và chỉ cài nếu chưa có
 install_if_missing() {
   local pkg=$1
   if dpkg -s "$pkg" &>/dev/null; then
-    echo "✅ $pkg đã được cài đặt, bỏ qua."
+    echo "✅ $pkg đã có, bỏ qua."
   else
-    echo "⬇️  Cài đặt $pkg..."
+    echo "⬇️  Đang cài $pkg..."
     sudo apt install -y "$pkg"
   fi
 }
 
-sudo apt update -y
+# Chỉ update package list nếu chưa có docker
+if ! command -v docker &>/dev/null; then
+  echo "🐳 Docker chưa cài — đang update và cài đặt..."
+  sudo apt update -y
+  install_if_missing docker.io
+else
+  echo "✅ Docker đã cài, bỏ qua bước update và cài docker."
+fi
 
-install_if_missing docker.io
+# Các gói khác (có thể cài nếu thiếu, không ảnh hưởng Docker)
 install_if_missing unzip
 install_if_missing curl
 install_if_missing jq
 install_if_missing bc
+
+# Bật và khởi động Docker nếu chưa chạy
+if ! sudo systemctl is-active --quiet docker; then
+  echo "▶️  Đang khởi động Docker service..."
+  sudo systemctl enable docker
+  sudo systemctl start docker
+else
+  echo "✅ Docker service đang chạy."
+fi
 
 
 # Thiết lập swap 10GB

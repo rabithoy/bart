@@ -1,17 +1,47 @@
 #!/bin/bash
 set -e
+
+# Khắc phục lỗi dpkg bị ngắt
+sudo dpkg --configure -a || true
+
+# Dọn dẹp container và image cũ
+containers=$(sudo docker ps -aq)
+if [ -n "$containers" ]; then
+  sudo docker rm -f $containers
+else
+  echo "⚙️  Không có container nào để xóa."
+fi
+
+images=$(sudo docker images -q)
+if [ -n "$images" ]; then
+  sudo docker rmi -f $images
+else
+  echo "⚙️  Không có image nào để xóa."
+fi
+
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
-# Cài đặt 
-sudo docker rmi -f $(sudo docker images -q) || true
-# Cài đặt 
-sudo docker rm -f $(sudo docker ps -aq) || true
 
+echo "📦 Checking dependencies..."
 
+install_if_missing() {
+  local pkg=$1
+  if dpkg -s "$pkg" &>/dev/null; then
+    echo "✅ $pkg đã được cài đặt, bỏ qua."
+  else
+    echo "⬇️  Cài đặt $pkg..."
+    sudo apt install -y "$pkg"
+  fi
+}
 
-# Cài đặt gói cần thiết
-echo "📦 Installing dependencies..."
-sudo apt update -y && sudo apt install -y docker.io unzip curl jq bc
+sudo apt update -y
+
+install_if_missing docker.io
+install_if_missing unzip
+install_if_missing curl
+install_if_missing jq
+install_if_missing bc
+
 
 # Thiết lập swap 10GB
 SWAP_FILE="/swapfile"

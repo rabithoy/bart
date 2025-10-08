@@ -1,62 +1,23 @@
 #!/bin/bash
 set -e
-
-# Sửa lỗi dpkg nếu có
-sudo dpkg --configure -a || true
-
-# Dọn container & image cũ
-containers=$(sudo docker ps -aq 2>/dev/null || true)
-if [ -n "$containers" ]; then
-  sudo docker rm -f $containers
-else
-  echo "⚙️  Không có container nào để xóa."
-fi
-
-images=$(sudo docker images -q 2>/dev/null || true)
-if [ -n "$images" ]; then
-  sudo docker rmi -f $images
-else
-  echo "⚙️  Không có image nào để xóa."
-fi
-
 sudo rm -rf main.zip
 sudo rm -rf InternetIncome-main
+# Cài đặt 
+sudo docker rmi -f $(sudo docker images -q) || true
+# Cài đặt 
+sudo docker rm -f $(sudo docker ps -aq) || true
 
-echo "📦 Kiểm tra các gói phụ thuộc..."
 
-# Hàm kiểm tra và chỉ cài nếu chưa có
-install_if_missing() {
-  local pkg=$1
-  if dpkg -s "$pkg" &>/dev/null; then
-    echo "✅ $pkg đã có, bỏ qua."
-  else
-    echo "⬇️  Đang cài $pkg..."
-    sudo apt install -y "$pkg"
-  fi
-}
 
-# Chỉ update package list nếu chưa có docker
-if ! command -v docker &>/dev/null; then
-  echo "🐳 Docker chưa cài — đang update và cài đặt..."
-  sudo apt update -y
-  install_if_missing docker.io
+# Cài đặt gói cần thiết
+echo "📦 Installing dependencies..."
+sudo apt update -y && sudo apt install -y unzip curl jq bc
+if sudo docker ps &>/dev/null; then
+  echo "✅ Docker đã hoạt động bình thường, bỏ qua cài đặt."
 else
-  echo "✅ Docker đã cài, bỏ qua bước update và cài docker."
-fi
-
-# Các gói khác (có thể cài nếu thiếu, không ảnh hưởng Docker)
-install_if_missing unzip
-install_if_missing curl
-install_if_missing jq
-install_if_missing bc
-
-# Bật và khởi động Docker nếu chưa chạy
-if ! sudo systemctl is-active --quiet docker; then
-  echo "▶️  Đang khởi động Docker service..."
-  sudo systemctl enable docker
-  sudo systemctl start docker
-else
-  echo "✅ Docker service đang chạy."
+  echo "🐳 Docker chưa có hoặc chưa chạy — đang cài đặt..."
+  sudo apt install -y docker.io
+  echo "✅ Docker đã được cài và khởi động xong."
 fi
 
 

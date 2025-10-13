@@ -62,10 +62,10 @@ sudo sed -i 's|^WIPTER_PASSWORD=.*|WIPTER_PASSWORD=hVlnu98ekPM@|' properties.con
 #sudo sed -i 's|^REPOCKET_API=.*|REPOCKET_API=69b5f8b8-40d4-4586-9247-4aa27e48ccfe|' properties.conf
 
 #sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=Mu3hefwR2XsEoo3K+Kn+yFICzbJgNvdjezTN2FjrGIQ=|' properties.conf
-#sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
+sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
 sudo sed -i 's|--restart=always|--restart=no|g' internetIncome.sh
 AUTH_CODE=$(curl -s "http://54.36.60.95:9876/get-auth" | jq -r '.auth_code')
-#sudo sed -i "s|^UR_AUTH_TOKEN=.*|UR_AUTH_TOKEN='$AUTH_CODE'|" properties.conf
+sudo sed -i "s|^UR_AUTH_TOKEN=.*|UR_AUTH_TOKEN='$AUTH_CODE'|" properties.conf
 wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
 wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 chmod +x 1.sh 2.sh

@@ -53,7 +53,7 @@ cd InternetIncome-main
 #
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
 sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=Mu3hefwR2XsEoo3K+Kn+yFICzbJgNvdjezTN2FjrGIQ=|' properties.conf
-wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
+wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/runrack1.sh
 wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 chmod +x 1.sh 2.sh
 screen -dmS job1 bash ./1.sh

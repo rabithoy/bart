@@ -39,7 +39,3 @@ wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 chmod +x 1.sh 2.sh
 screen -dmS job1 bash ./1.sh
 
-sleep 10
-sudo bash internetIncome.sh --delete || true
-sleep 10
-sudo bash internetIncome.sh --start

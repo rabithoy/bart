@@ -56,8 +56,6 @@ sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
 # Thay WIPTER_EMAIL và WIPTER_PASSWORD
 sudo sed -i 's|^WIPTER_EMAIL=.*|WIPTER_EMAIL=dodiezrmuu61@gmail.com|' properties.conf
 sudo sed -i 's|^WIPTER_PASSWORD=.*|WIPTER_PASSWORD=oOvWZrPN9ch!|' properties.conf
-
-sudo sed -i 's|^EARNAPP=.*|EARNAPP=true|' properties.conf
 sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
 #sudo sed -i 's|--restart=always|--restart=no|g' internetIncome.sh
 #AUTH_CODE=$(curl -s "http://54.36.60.95:9876/get-auth" | jq -r '.auth_code')
@@ -65,4 +63,4 @@ sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.con
 wget -O 1.sh https://raw.githubusercontent.com/rabithoy/bart/main/proxybart.sh
 wget -O 2.sh https://raw.githubusercontent.com/rabithoy/bart/main/runbart.sh
 chmod +x 1.sh 2.sh
-screen -dmS job1 bash ./1.sh
+#screen -dmS job1 bash ./1.sh

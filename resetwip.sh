@@ -7,6 +7,6 @@ while true; do
   for cname in $CONTAINERS; do
       echo "Restarting $cname at $(date)"
       sudo docker restart "$cname"
-      sleep 25
+      sleep 20
   done
 done

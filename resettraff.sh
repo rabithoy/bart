@@ -23,6 +23,6 @@ while true; do
       sudo docker restart "$C"
     fi
 
-    sleep 120
+    sleep 60
   done
 done

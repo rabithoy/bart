@@ -1,12 +1,15 @@
 #!/bin/bash
+# Cài đặt 
+sudo docker rmi -f $(sudo docker images -q) || true
+# Cài đặt 
+sudo docker rm -f $(sudo docker ps -aq) || true
 
-while true; do
-  # Lấy danh sách tất cả container có prefix wipter, traff hoặc caster
-  CONTAINERS=$(sudo docker ps --format '{{.Names}}' | grep -E '^(traff|proxyrack|wipter)' | sort)
-
-  for cname in $CONTAINERS; do
-      echo "Restarting $cname at $(date)"
-      sudo docker restart "$cname"
-      sleep 20
-  done
-done
+cd InternetIncome-main
+#
+sudo rm -rf containers.txt
+sudo rm -rf containernames.txt
+sudo rm -rf resolv.conf
+sudo sed -i 's|^EARNAPP=.*|EARNAPP=true|' properties.conf
+sudo sed -i 's|^--restart=always|--restart=on-failure|' internetIncome.sh
+sudo cp /home/ubuntu/updateproxy.txt /home/ubuntu/InternetIncome-main/proxies.txt
+sudo bash internetIncome.sh --start

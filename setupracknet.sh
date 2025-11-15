@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 sudo rm -rf InternetIncome-main
 # Cài đặt 
 sudo docker rmi -f $(sudo docker images -q) || true
@@ -41,10 +40,8 @@ sudo sysctl vm.swappiness=10 vm.vfs_cache_pressure=50
 sudo sysctl -p
 
 # 🧩 Bước 1: Tải nếu chưa có main.zip
-if [ ! -f "main.zip" ]; then
-  wget -O main.zip https://github.com/engageub/InternetIncome/archive/refs/heads/main.zip
-fi
-#111
+
+wget -O main.zip https://github.com/engageub/InternetIncome/archive/refs/heads/main.zip
 
 unzip -o main.zip
 

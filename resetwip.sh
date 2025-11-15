@@ -7,6 +7,7 @@ sudo docker rm -f $(sudo docker ps -aq) || true
 cd InternetIncome-main
 #
 sudo rm -rf containers.txt
+sudo rm -rf earnappdata
 sudo rm -rf containernames.txt
 sudo rm -rf resolv.conf
 sudo sed -i 's|^EARNAPP=.*|EARNAPP=true|' properties.conf

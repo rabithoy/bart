@@ -10,6 +10,6 @@ sudo rm -rf containers.txt
 sudo rm -rf earnappdata
 sudo rm -rf containernames.txt
 sudo rm -rf resolv.conf
-sudo sed -i 's|^--restart=always|--restart=on-failure|' internetIncome.sh
+sudo sed -i 's|--restart=always|--restart=on-failure|g' internetIncome.sh
 sudo cp /home/ubuntu/updateproxy.txt /home/ubuntu/InternetIncome-main/proxies.txt
 sudo bash internetIncome.sh --start

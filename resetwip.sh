@@ -11,7 +11,8 @@ sudo rm -rf earnappdata
 sudo rm -rf containernames.txt
 sudo rm -rf resolv.conf
 sudo sed -i 's|^EARNAPP=.*|EARNAPP=true|' properties.conf
-sudo sed -i 's|--restart=on-failur|--restart=no|g' internetIncome.sh
 sudo sed -i 's|--restart=always|--restart=no|g' internetIncome.sh
+sudo sed -i 's|--restart=on-failure|--restart=no|g' internetIncome.sh
+sudo sed -i 's|--restart=noe|--restart=no|g' internetIncome.sh
 sudo cp /home/ubuntu/updateproxy.txt /home/ubuntu/InternetIncome-main/proxies.txt
 sudo bash internetIncome.sh --start

@@ -50,3 +50,6 @@ cd InternetIncome-main
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
 sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=OeWo3xtxe5TusWwkTdsjfpoulyY3l9CqOMez01eZK/s=|' properties.conf
 sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
+
+sudo bash internetIncome.sh --start
+

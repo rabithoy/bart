@@ -2,7 +2,7 @@
 
 SERVER="http://142.171.114.6:8888"
 UPDATE_FILE="/home/cloudshell-user/updateproxy.txt"
-COUNT=17
+COUNT=25
 
 # ✅ Tạo ID worker duy nhất
 SDT="worker-$(date +%s)-$(uuidgen | cut -c1-8)"
@@ -45,7 +45,7 @@ sudo rm -f *.txt
 sudo rm -rf resolv.conf
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
 sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLEggSnhicxN|" properties.conf
-sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=OeWo3xtxe5TusWwkTdsjfpoulyY3l9CqOMez01eZK/s=|' properties.conf
+sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=yp9vtOAuQU9wzrXLQtMajunEkEKTsozGNa1m8md/Ksc=|' properties.conf
 
 [ -f "/home/cloudshell-user/updateproxy.txt" ] && cp /home/cloudshell-user/updateproxy.txt proxies.txt
 

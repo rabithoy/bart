@@ -49,4 +49,4 @@ cd InternetIncome-main
 #
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
 sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=Mu3hefwR2XsEoo3K+Kn+yFICzbJgNvdjezTN2FjrGIQ=|' properties.conf
-sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
+screen -dmS resetwip bash -c "bash <(curl -s https://raw.githubusercontent.com/rabithoy/reset/main/ressetwip1.sh)"

@@ -44,8 +44,8 @@ sudo rm -rf traffmonetizerdata
 sudo rm -f *.txt
 sudo rm -rf resolv.conf
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
-sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLEggSnhicxN|" properties.conf
-sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=yp9vtOAuQU9wzrXLQtMajunEkEKTsozGNa1m8md/Ksc=|' properties.conf
+#sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLEggSnhicxN|" properties.conf
+sudo sed -i 's|^TRAFFMONETIZER_TOKEN=.*|TRAFFMONETIZER_TOKEN=OeWo3xtxe5TusWwkTdsjfpoulyY3l9CqOMez01eZK/s=|' properties.conf
 
 [ -f "/home/cloudshell-user/updateproxy.txt" ] && cp /home/cloudshell-user/updateproxy.txt proxies.txt
 

@@ -25,7 +25,7 @@ fi
 SWAP_FILE="/swapfile"
 if [ ! -f "$SWAP_FILE" ]; then
     echo "💾 Creating swap file..."
-    sudo fallocate -l 10G "$SWAP_FILE"
+    sudo fallocate -l 30G "$SWAP_FILE"
     sudo chmod 600 "$SWAP_FILE"
     sudo mkswap "$SWAP_FILE"
 fi

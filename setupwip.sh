@@ -52,9 +52,5 @@ unzip -o main.zip
 cd InternetIncome-main
 #
 sudo sed -i "s|^USE_PROXIES=.*|USE_PROXIES=true|" properties.conf
-
-# Thay WIPTER_EMAIL và WIPTER_PASSWORD
-sudo sed -i 's|^WIPTER_EMAIL=.*|WIPTER_EMAIL=caroljeanrie7p54@gmail.com|' properties.conf
-sudo sed -i 's|^WIPTER_PASSWORD=.*|WIPTER_PASSWORD=hVlnu98ekPM@|' properties.conf
 sudo sed -i "s|^CASTAR_SDK_KEY=.*|CASTAR_SDK_KEY=cskLE50HncydFo|" properties.conf
 

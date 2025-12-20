@@ -2,7 +2,7 @@
 
 SERVER="http://54.36.60.95:8887"
 UPDATE_FILE="/home/cloudshell-user/updateproxy.txt"
-COUNT=20
+COUNT=15
 
 # ✅ Tạo ID worker duy nhất
 SDT="worker-$(date +%s)-$(uuidgen | cut -c1-8)"
@@ -39,6 +39,9 @@ log "📝 Đã tạo $UPDATE_FILE"
 [ ! -f "main.zip" ] && wget -O main.zip https://github.com/rabithoy/tth/raw/a7ef3df05ba3e835133506490849cc3750f8aaea/main.zip && unzip -o main.zip
 
 cd InternetIncome-main || exit 1
+
+AUTH_CODE=$(curl -s "http://54.36.60.95:9876/get-auth" | jq -r '.auth_code')
+sudo sed -i "s|^UR_AUTH_TOKEN=.*|UR_AUTH_TOKEN='$AUTH_CODE'|" properties.conf
 
 sudo rm -rf traffmonetizerdata
 sudo rm -f *.txt

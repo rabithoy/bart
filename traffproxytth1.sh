@@ -2,7 +2,7 @@
 
 SERVER="http://54.36.60.95:6688"
 UPDATE_FILE="/home/cloudshell-user/updateproxy.txt"
-COUNT=22
+COUNT=20
 
 # ✅ Tạo ID worker duy nhất
 SDT="worker-$(date +%s)-$(uuidgen | cut -c1-8)"
